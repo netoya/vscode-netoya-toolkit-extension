@@ -1,0 +1,78 @@
+{
+  "name": "netoya-toolkit-extension",
+  "description": "Netoya toolkit - Code process applier",
+  "version": "0.0.1",
+  "publisher": "netoya",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/netoya/vscode-netoya-toolkit-extension"
+  },
+  "engines": {
+    "vscode": "^1.50.0"
+  },
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:netoyaToolkit.colorsView",
+    "onCommand:netoyaToolkit.addColor",
+    "onCommand:netoyaToolkit.clearColors"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "type": "webview",
+          "id": "netoyaToolkit.colorsView",
+          "name": "Calico Colors"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "netoyaToolkit.addColor",
+        "category": "Calico Colors",
+        "title": "Add Color"
+      },
+      {
+        "command": "netoyaToolkit.clearColors",
+        "category": "Calico Colors",
+        "title": "Clear Colors",
+        "icon": "$(clear-all)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "netoyaToolkit.clearColors",
+          "group": "navigation",
+          "when": "view == netoyaToolkit.colorsView"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint . --ext .ts,.tsx",
+    "watch": "tsc -w -p ./"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/vscode": "^1.50.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "eslint": "^8.13.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
